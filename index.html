@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -29,6 +29,7 @@
         <a href="#start"><i>05</i>はじめ方</a>
         <a href="#action"><i>06</i>できること</a>
         <a href="#faq"><i>07</i>Q&amp;A</a>
+        <a href="#feedback"><i>08</i>ご意見</a>
       </nav>
     </div>
   </header>
@@ -459,6 +460,41 @@
       </div>
     </section>
 
+    <!-- 08 ご意見ボックス -->
+    <section id="feedback" class="section">
+      <div class="container split">
+        <header class="split-head">
+          <p class="num">08</p>
+          <p class="eyebrow">Feedback</p>
+          <h2>ご意見ボックス</h2>
+        </header>
+        <div class="split-body">
+          <p>
+            香りで困った経験、無香料生活で工夫していること、このサイトへのご感想など、
+            お気軽にお寄せください。いただいたご意見は、サイトづくりの参考にさせていただきます。
+          </p>
+          <form class="feedback-form" id="feedbackForm" novalidate>
+            <label class="field">
+              <span class="field-label">ニックネーム <small>（任意）</small></span>
+              <input type="text" name="nickname" maxlength="50" autocomplete="nickname" placeholder="例：むこうりょう好き">
+            </label>
+            <label class="field">
+              <span class="field-label">ご意見・ご感想 <small>（必須）</small></span>
+              <textarea name="message" rows="6" maxlength="2000" required placeholder="ご自由にお書きください"></textarea>
+              <span class="field-count" aria-live="polite"><span id="feedbackCount">0</span> / 2000</span>
+            </label>
+            <!-- スパム対策（人には見えない欄） -->
+            <label class="hp" aria-hidden="true">website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            <div class="feedback-actions">
+              <button type="submit" class="btn" id="feedbackSubmit">送信する</button>
+              <p class="feedback-status" id="feedbackStatus" role="status" aria-live="polite"></p>
+            </div>
+            <p class="small">※ お名前・連絡先などの個人情報は書かないでください。お返事はできませんのでご了承ください。</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -482,6 +518,6 @@
 
   <a href="#top" class="to-top" aria-label="ページの先頭へ戻る">Top</a>
 
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>

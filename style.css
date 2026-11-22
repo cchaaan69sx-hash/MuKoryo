@@ -566,3 +566,30 @@ em { font-style: normal; }
 .agent-name { font-family: var(--serif-ja); font-size: 1.02rem; letter-spacing: 0.1em; color: var(--black); }
 .agent-use { font-size: 0.86rem; color: var(--body); }
 @media (max-width: 540px) { .agent-list li { grid-template-columns: 1fr; gap: 4px; } }
+
+/* =========================================================
+   08 ご意見ボックス
+   ========================================================= */
+.feedback-form { margin-top: 32px; padding: 40px; background: var(--tint); border: 1px solid var(--line); border-radius: 2px; }
+.field { display: block; margin-bottom: 28px; position: relative; }
+.field-label { display: block; margin-bottom: 10px; font-family: var(--serif-ja); font-size: 0.95rem; letter-spacing: 0.1em; color: var(--black); }
+.field-label small { font-family: var(--sans); font-size: 0.75rem; color: var(--gray); letter-spacing: 0.05em; }
+.feedback-form input[type="text"],
+.feedback-form textarea {
+  width: 100%; padding: 14px 16px; font: inherit; font-size: 0.92rem; color: var(--black);
+  background: var(--white); border: 1px solid var(--line); border-radius: 2px; resize: vertical;
+  transition: border-color .3s;
+}
+.feedback-form input[type="text"]:focus,
+.feedback-form textarea:focus { outline: none; border-color: var(--black); }
+.field-count { display: block; margin-top: 6px; text-align: right; font-size: 0.75rem; color: var(--gray); }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.feedback-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.feedback-actions .btn { cursor: pointer; font-family: var(--sans); }
+.feedback-actions .btn:disabled { opacity: .5; cursor: default; }
+.feedback-status { margin: 0; font-size: 0.88rem; color: var(--body); }
+.feedback-status[data-state="done"] { color: var(--black); font-family: var(--serif-ja); }
+.feedback-status[data-state="error"] { color: #a3302a; }
+.feedback-form .small { margin: 0; }
+@media (max-width: 640px) { .feedback-form { padding: 26px 20px; } }
+@media (max-width: 1180px) and (min-width: 901px) { .site-nav { gap: 18px; } }

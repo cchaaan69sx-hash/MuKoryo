@@ -58,3 +58,48 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.12 });
 targets.forEach(el => io.observe(el));
+
+// ご意見ボックス
+const fbForm = document.getElementById('feedbackForm');
+if (fbForm) {
+  const fbStatus = document.getElementById('feedbackStatus');
+  const fbButton = document.getElementById('feedbackSubmit');
+  const fbCount = document.getElementById('feedbackCount');
+  const fbMessage = fbForm.elements.message;
+  fbMessage.addEventListener('input', () => { fbCount.textContent = fbMessage.value.length; });
+
+  fbForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const message = fbMessage.value.trim();
+    if (!message) {
+      fbStatus.textContent = 'ご意見・ご感想を入力してください。';
+      fbStatus.dataset.state = 'error';
+      fbMessage.focus();
+      return;
+    }
+    fbButton.disabled = true;
+    fbStatus.textContent = '送信しています…';
+    fbStatus.dataset.state = '';
+    try {
+      const r = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nickname: fbForm.elements.nickname.value,
+          message,
+          website: fbForm.elements.website.value,
+        }),
+      });
+      if (!r.ok) throw new Error('failed');
+      fbForm.reset();
+      fbCount.textContent = '0';
+      fbStatus.textContent = 'ありがとうございました。ご意見を受け付けました。';
+      fbStatus.dataset.state = 'done';
+    } catch {
+      fbStatus.textContent = '送信できませんでした。時間をおいて、もう一度お試しください。';
+      fbStatus.dataset.state = 'error';
+    } finally {
+      fbButton.disabled = false;
+    }
+  });
+}

@@ -19,6 +19,7 @@ export default async function handler(req, res) {
   const message = typeof body.message === 'string' ? body.message.trim() : '';
   const nicknameRaw = typeof body.nickname === 'string' ? body.nickname.trim() : '';
   const nickname = nicknameRaw === '' ? null : nicknameRaw;
+  const allowPublish = body.allow_publish === true;
 
   if (message.length < 1 || message.length > 2000) {
     return res.status(400).json({ ok: false, error: 'message_length' });
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         Prefer: 'return=minimal',
       },
-      body: JSON.stringify({ message, nickname }),
+      body: JSON.stringify({ message, nickname, allow_publish: allowPublish }),
     });
     if (!r.ok) {
       return res.status(502).json({ ok: false, error: 'save_failed' });

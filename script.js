@@ -88,6 +88,7 @@ if (fbForm) {
           nickname: fbForm.elements.nickname.value,
           message,
           website: fbForm.elements.website.value,
+          allow_publish: fbForm.elements.allow_publish.checked,
         }),
       });
       if (!r.ok) throw new Error('failed');
@@ -102,4 +103,39 @@ if (fbForm) {
       fbButton.disabled = false;
     }
   });
+}
+
+// みんなのご意見とお返事（掲載中のものだけを表示）
+const repliesList = document.getElementById('repliesList');
+if (repliesList) {
+  const repliesEmpty = document.getElementById('repliesEmpty');
+  const fmt = (iso) => {
+    const d = new Date(iso);
+    return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+  };
+  const el = (tag, cls, text) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text; // 文字として入れる（HTMLとして解釈しない）
+    return e;
+  };
+  fetch('/api/replies')
+    .then(r => (r.ok ? r.json() : Promise.reject()))
+    .then(({ items }) => {
+      if (!items || items.length === 0) return;
+      repliesEmpty.hidden = true;
+      items.forEach(it => {
+        const li = el('li', 'reply-item');
+        const meta = el('p', 'reply-meta');
+        meta.append(el('span', 'reply-name', it.nickname || '匿名'), el('span', 'reply-date', fmt(it.created_at)));
+        li.append(meta, el('p', 'reply-message', it.message));
+        if (it.reply) {
+          const box = el('div', 'reply-answer');
+          box.append(el('p', 'reply-answer-label', 'お返事'), el('p', 'reply-answer-text', it.reply));
+          li.append(box);
+        }
+        repliesList.append(li);
+      });
+    })
+    .catch(() => { repliesEmpty.textContent = 'ご意見を読み込めませんでした。'; });
 }

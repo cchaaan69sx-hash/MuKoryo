@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 
@@ -473,6 +473,13 @@
             香りで困った経験、無香料生活で工夫していること、このサイトへのご感想など、
             お気軽にお寄せください。いただいたご意見は、サイトづくりの参考にさせていただきます。
           </p>
+
+          <div class="replies" id="replies">
+            <h3 class="replies-title">みんなのご意見とお返事</h3>
+            <ul class="replies-list" id="repliesList" aria-live="polite"></ul>
+            <p class="replies-empty small" id="repliesEmpty">まだ掲載しているご意見はありません。</p>
+          </div>
+
           <form class="feedback-form" id="feedbackForm" novalidate>
             <label class="field">
               <span class="field-label">ニックネーム <small>（任意）</small></span>
@@ -483,13 +490,17 @@
               <textarea name="message" rows="6" maxlength="2000" required placeholder="ご自由にお書きください"></textarea>
               <span class="field-count" aria-live="polite"><span id="feedbackCount">0</span> / 2000</span>
             </label>
+            <label class="consent">
+              <input type="checkbox" name="allow_publish">
+              <span>このご意見を、お返事とあわせてサイトに掲載してもかまいません（ニックネームのみ表示されます）</span>
+            </label>
             <!-- スパム対策（人には見えない欄） -->
             <label class="hp" aria-hidden="true">website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
             <div class="feedback-actions">
               <button type="submit" class="btn" id="feedbackSubmit">送信する</button>
               <p class="feedback-status" id="feedbackStatus" role="status" aria-live="polite"></p>
             </div>
-            <p class="small">※ お名前・連絡先などの個人情報は書かないでください。お返事はできませんのでご了承ください。</p>
+            <p class="small">※ お名前・連絡先などの個人情報は書かないでください。お返事は、掲載に同意いただいたご意見の中から選んで、このページの「みんなのご意見とお返事」でさせていただきます。すべてのご意見にお返事できるわけではありませんので、ご了承ください。</p>
           </form>
         </div>
       </div>
@@ -518,6 +529,6 @@
 
   <a href="#top" class="to-top" aria-label="ページの先頭へ戻る">Top</a>
 
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>
